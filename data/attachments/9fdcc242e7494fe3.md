@@ -1,0 +1,144 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Dev/dev.delete.spec.ts >> Validate DELETE Endpoint - List of users >> DELETE - Delete specific user by age - Status 404
+- Location: tests/Dev/dev.delete.spec.ts:88:7
+
+# Error details
+
+```
+TypeError: apiRequestContext.post: Invalid URL
+```
+
+# Test source
+
+```ts
+  1   | import { test, expect, APIRequestContext, request } from '@playwright/test';
+  2   | import { getRequestContext } from '../../utils/apiClient';
+  3   | import dotenv from 'dotenv';
+  4   | 
+  5   | 
+  6   | dotenv.config();
+  7   | 
+  8   | // 🔧 Helpers
+  9   | function generateEmail() {
+  10  |   return `test${Date.now()}@mail.com`;
+  11  | }
+  12  | 
+  13  | function generateUser() {
+  14  |   return `Test User: ${Date.now()}`;
+  15  | }
+  16  | 
+  17  | function generateAge(){
+  18  |   return Math.floor(Math.random() * 150) + 1;
+  19  | }
+  20  | 
+  21  | async function createUser(api: APIRequestContext, name: string, email: string, age: number) {
+> 22  |   return await api.post('/dev/users', {
+      |                    ^ TypeError: apiRequestContext.post: Invalid URL
+  23  |     data: {
+  24  |       name: name,
+  25  |       email: email,
+  26  |       age: age
+  27  |     }
+  28  |   });
+  29  | }
+  30  | 
+  31  | async function deleteUser(api: APIRequestContext, email: string) {
+  32  |   return await api.delete(`/dev/users/${email}`);
+  33  | }
+  34  | 
+  35  | async function deleteUserWithoutEmailHeader(api: APIRequestContext) {
+  36  |   return await api.delete('/dev/users');
+  37  | }
+  38  | 
+  39  | test.describe('Validate DELETE Endpoint - List of users', () => {
+  40  | 
+  41  |   test('DELETE - Delete user successfully by email - Status 204', async () => {
+  42  |     const api = await getRequestContext(true);
+  43  |     const email = generateEmail();
+  44  | 
+  45  |     const createRes = await createUser(api, generateUser(), email, generateAge());
+  46  |     const bodyCreate = await createRes.json();
+  47  |     console.log('User Created: ', bodyCreate);
+  48  | 
+  49  |     const deleteRes = await deleteUser(api, email);
+  50  | 
+  51  |     console.log('Status Code:', deleteRes.status());
+  52  | 
+  53  |     expect.soft(deleteRes.status()).toBe(204);
+  54  |   });
+  55  | 
+  56  |   test('DELETE - Delete user using non existing email - Status 404', async () => {
+  57  |     const api = await getRequestContext(true);
+  58  |     const email = generateEmail();
+  59  | 
+  60  |     const deleteRes = await deleteUser(api, email);
+  61  |     const body = await deleteRes.json();
+  62  | 
+  63  |     console.log('Status Code:', deleteRes.status());
+  64  |     console.log('DELETE Response:', body);
+  65  | 
+  66  |     expect.soft(deleteRes.status()).toBe(404);
+  67  |   });
+  68  | 
+  69  |     test('DELETE - Delete specific user by name - Status 404', async () => {
+  70  |     const api = await getRequestContext(true);
+  71  |     const name = generateUser();
+  72  |     const email = generateEmail();
+  73  | 
+  74  |     await createUser(api, name, email, generateAge());
+  75  | 
+  76  |     const res = await api.delete(`/dev/users/${name}`);
+  77  | 
+  78  |     const body = await res.json();
+  79  | 
+  80  |     console.log('Status Code:', res.status());
+  81  |     console.log('DELETE Response:', body);
+  82  | 
+  83  |     expect.soft(res.status()).toBe(404);
+  84  | 
+  85  |     await deleteUser(api, email);
+  86  |   });
+  87  | 
+  88  |   test('DELETE - Delete specific user by age - Status 404', async () => {
+  89  |     const api = await getRequestContext(true);
+  90  |     const email = generateEmail();
+  91  |     const age = generateAge();
+  92  | 
+  93  |     await createUser(api, generateUser(), email, age);
+  94  | 
+  95  |     const res = await api.delete(`/dev/users/${age}`);
+  96  | 
+  97  |     const body = await res.json();
+  98  | 
+  99  |     console.log('Status Code:', res.status());
+  100 |     console.log('DELETE Response:', body);
+  101 | 
+  102 |     expect.soft(res.status()).toBe(404);
+  103 | 
+  104 |     await deleteUser(api, email);
+  105 |   });
+  106 | 
+  107 |   test('DELETE - Delete user without Email Header - Status 400', async () => {
+  108 |     const api = await getRequestContext(true);
+  109 | 
+  110 |     const deleteRes = await deleteUserWithoutEmailHeader(api);
+  111 |     const body = await deleteRes.json();
+  112 | 
+  113 |     console.log('Status Code:', deleteRes.status());
+  114 |     console.log('DELETE Response:', body);
+  115 | 
+  116 |     expect.soft(deleteRes.status()).toBe(400);
+  117 |   });
+  118 | 
+  119 |   test('DELETE - Delete user without authentication - Status 401', async () => {
+  120 |     const api = await request.newContext({
+  121 |           baseURL: process.env.BASE_URL,
+  122 |           extraHTTPHeaders: {
+```
