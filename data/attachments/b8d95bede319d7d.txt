@@ -1,0 +1,7 @@
+User Created:  {
+  age: 54,
+  email: 'test1777665994275@mail.com',
+  name: 'Test User: 1777665994275'
+}
+PUT Response: { error: 'name is required' }
+Status Code: 400

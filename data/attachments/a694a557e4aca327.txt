@@ -1,0 +1,68 @@
+GET Response: [
+  {
+    age: 137,
+    email: 'test1777665998754@mail.com',
+    name: 'Test User: 1777665998754'
+  },
+  {
+    age: 50,
+    email: 'test1777665999447@mail.com',
+    name: 'Test User: 1777665999447'
+  },
+  {
+    age: 9,
+    email: 'test1777666000141@mail.com',
+    name: 'Test User: 1777666000141'
+  },
+  {
+    age: 40,
+    email: 'test1777666002882@mail.com',
+    name: 'Test User: 1777666002882'
+  },
+  {
+    age: 89,
+    email: 'test1777666003584@mail.com',
+    name: 'Test User: 1777666003584'
+  },
+  {
+    age: 96,
+    email: 'test1777666004284@mail.com',
+    name: 'Test User: 1777666004284'
+  },
+  {
+    age: 138,
+    email: 'test1777666004975@mail.com',
+    name: 'Test User: 1777666004975'
+  },
+  {
+    age: 8,
+    email: 'test1777666005670@mail.com',
+    name: 'Test User: 1777666005670'
+  },
+  {
+    age: 95,
+    email: 'test1777666006358@mail.com',
+    name: 'Test User: 1777666006358'
+  },
+  {
+    age: 81,
+    email: 'test1777666007038@mail.com',
+    name: 'Test User: 1777666007038'
+  },
+  {
+    age: 64,
+    email: 'test1777666007733@mail.com',
+    name: 'Test User: 1777666007733'
+  },
+  {
+    age: 30,
+    email: 'test1777666008431@mail.com',
+    name: 'Test User: 1777666008431'
+  },
+  {
+    age: 144,
+    email: 'test1777666011162@mail.com',
+    name: 'Test User: 1777666011162'
+  }
+]
+Status Code: 200

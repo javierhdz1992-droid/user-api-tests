@@ -1,7 +1,0 @@
-User Created:  {
-  age: 76,
-  email: 'test1777630905746@mail.com',
-  name: 'Test User: 1777630905746'
-}
-PUT Response: { error: 'age is required' }
-Status Code: 400

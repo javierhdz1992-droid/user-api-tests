@@ -1,0 +1,12 @@
+User Created:  {
+  age: 140,
+  email: 'test1777665994393@mail.com',
+  name: 'Test User: 1777665994393'
+}
+User Created:  {
+  age: 126,
+  email: 'test1777665994399@mail.com',
+  name: 'Test User: 1777665994399'
+}
+Status Code: 409
+PUT Response: { error: 'Email already exists' }

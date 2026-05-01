@@ -1,6 +1,0 @@
-User Created:  {
-  age: 125,
-  email: 'test1777630891174@mail.com',
-  name: 'Test User: 1777630891174'
-}
-Status Code: 204

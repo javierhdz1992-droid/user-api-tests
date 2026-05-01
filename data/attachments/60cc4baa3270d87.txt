@@ -1,6 +1,0 @@
-POST Response: {
-  age: 119,
-  email: 'test1777630904931@mail.com',
-  name: 'Test User: 1777630904931'
-}
-Status Code: 201

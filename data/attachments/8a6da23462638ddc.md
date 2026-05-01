@@ -1,0 +1,208 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Prod/prod.post.spec.ts >> Validate POST Endpoint - Create user >> POST - Create user with duplicate email - Status 409
+- Location: tests/Prod/prod.post.spec.ts:147:9
+
+# Error details
+
+```
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 409
+Received: 500
+```
+
+# Test source
+
+```ts
+  60  |       name: name,
+  61  |       email: email,
+  62  |       age: age
+  63  |     }
+  64  |   });
+  65  | }
+  66  | 
+  67  | async function deleteUser(api: APIRequestContext, email: string) {
+  68  |   return await api.delete(`/prod/users/${email}`);
+  69  | }
+  70  | 
+  71  | test.describe('Validate POST Endpoint - Create user', () => {
+  72  | 
+  73  |   test('POST - Create user successfully - Status 201', async () => {
+  74  |     const api = await getRequestContext(true);
+  75  | 
+  76  |     const res = await createUser(api, generateUser(), generateEmail(), generateAge());
+  77  | 
+  78  |     const body = await res.json();
+  79  | 
+  80  |     console.log('POST Response:', body);
+  81  |     console.log('Status Code:', res.status());
+  82  | 
+  83  |     expect.soft(res.status()).toBe(201);
+  84  | 
+  85  |     await deleteUser(api, body.email);
+  86  |   });
+  87  | 
+  88  |   test('POST - Create user without name - Status 400', async () => {
+  89  |     const api = await getRequestContext(true);
+  90  | 
+  91  |     const res = await createUserWithoutName(api, generateEmail(), generateAge());
+  92  | 
+  93  |     const body = await res.json();
+  94  |     
+  95  |     console.log('Status Code:', res.status());
+  96  |     console.log('POST Response:', body);
+  97  |     
+  98  |     expect.soft(res.status()).toBe(400);
+  99  |   });
+  100 | 
+  101 |   test('POST - Create user without email - Status 400', async () => {
+  102 |     const api = await getRequestContext(true);
+  103 |     
+  104 |     const res = await createUserWithoutEmail(api, generateUser(), generateAge());
+  105 | 
+  106 |     const body = await res.json();
+  107 | 
+  108 |     console.log('Status Code:', res.status());
+  109 |     console.log('POST Response:', body);
+  110 | 
+  111 |     expect.soft(res.status()).toBe(400);
+  112 |   });
+  113 | 
+  114 |   test('POST - Create user without age - Status 400', async () => {
+  115 |     const api = await getRequestContext(true);
+  116 |     
+  117 |     const res = await createUserWithoutAge(api, generateUser(), generateEmail());
+  118 | 
+  119 |     const body = await res.json();
+  120 | 
+  121 |     console.log('Status Code:', res.status());
+  122 |     console.log('POST Response:', body);
+  123 | 
+  124 |     expect.soft(res.status()).toBe(400);
+  125 |   });
+  126 | 
+  127 |   test('POST - Create user with duplicate name - Status 201', async () => {
+  128 |     const api = await getRequestContext(true);
+  129 |     const name = generateUser();
+  130 |     const email1 = generateEmail();
+  131 | 
+  132 |     let res = await createUser(api, name, email1, generateAge());
+  133 | 
+  134 |     const email2 = generateEmail();
+  135 |     res = await createUser(api, name, email2, generateAge());
+  136 | 
+  137 |     const body = await res.json();
+  138 | 
+  139 |     console.log('Status Code:', res.status());
+  140 |     console.log('POST Response:', body);
+  141 | 
+  142 |     expect.soft(res.status()).toBe(201);
+  143 |     await deleteUser(api, email1);
+  144 |     await deleteUser(api, email2);
+  145 |   });
+  146 | 
+  147 |     test('POST - Create user with duplicate email - Status 409', async () => {
+  148 |     const api = await getRequestContext(true);
+  149 |     const email = generateEmail();
+  150 | 
+  151 |     let res = await createUser(api, generateUser(), email, generateAge());
+  152 | 
+  153 |     res = await createUser(api, generateUser(), email, generateAge());
+  154 | 
+  155 |     const body = await res.json();
+  156 | 
+  157 |     console.log('Status Code:', res.status());
+  158 |     console.log('POST Response:', body);
+  159 | 
+> 160 |     expect.soft(res.status()).toBe(409);
+      |                               ^ Error: expect(received).toBe(expected) // Object.is equality
+  161 |     await deleteUser(api, email);
+  162 |   });
+  163 | 
+  164 |   test('POST - Create user with duplicate age - Status 201', async () => {
+  165 |     const api = await getRequestContext(true);
+  166 |     const age = generateAge();
+  167 |     const email1 = generateEmail();
+  168 | 
+  169 |     let res = await createUser(api, generateUser(), email1, age);
+  170 | 
+  171 |     const email2 = generateEmail();
+  172 |     res = await createUser(api, generateUser(), email2, age);
+  173 | 
+  174 |     const body = await res.json();
+  175 | 
+  176 |     console.log('Status Code:', res.status());
+  177 |     console.log('POST Response:', body);
+  178 | 
+  179 |     expect.soft(res.status()).toBe(201);
+  180 |     await deleteUser(api, email1);
+  181 |     await deleteUser(api, email2);
+  182 |   });
+  183 | 
+  184 | 
+  185 |   test('POST - Create user with age less than 1 - Status 400', async () => {
+  186 |     const api = await getRequestContext(true);
+  187 | 
+  188 |     const res = await createUser(api, generateUser(), generateEmail(), -1);
+  189 | 
+  190 |     const body = await res.json();
+  191 | 
+  192 |     console.log('Status Code:', res.status());
+  193 |     console.log('POST Response:', body);
+  194 | 
+  195 |     expect.soft(res.status()).toBe(400);
+  196 |   });
+  197 | 
+  198 |   test('POST - Create user with age greater than 150 - Status 400', async () => {
+  199 |     const api = await getRequestContext(true);
+  200 | 
+  201 |     const res = await createUser(api, generateUser(), generateEmail(), 151);
+  202 | 
+  203 |     const body = await res.json();
+  204 | 
+  205 |     console.log('Status Code:', res.status());
+  206 |     console.log('POST Response:', body);
+  207 | 
+  208 |     expect.soft(res.status()).toBe(400);
+  209 |   });
+  210 | 
+  211 |     test('POST - Create user with String age  - Status 400', async () => {
+  212 |       const api = await getRequestContext(true);
+  213 |   
+  214 |       const res = await createUserStringAge(api, generateUser(), generateEmail(), "55");
+  215 |   
+  216 |       const body = await res.json();
+  217 |   
+  218 |       console.log('Status Code:', res.status());
+  219 |       console.log('POST Response:', body);
+  220 |   
+  221 |       expect.soft(res.status()).toBe(400);
+  222 |     });
+  223 | 
+  224 |   test('POST - Create user without authentication - Status 401', async () => {
+  225 |         const api = await request.newContext({
+  226 |           baseURL: process.env.BASE_URL,
+  227 |           extraHTTPHeaders: {
+  228 |             'Content-Type': 'application/json'
+  229 |           }
+  230 |         });
+  231 |     
+  232 |         const response = await createUser(api, generateUser(), generateEmail(), generateAge());
+  233 |         const body = await response.json();
+  234 |   
+  235 |         console.log('POST Response:', body);
+  236 |         console.log('Status Code:', response.status());
+  237 |     
+  238 |         expect.soft(response.status()).toBe(401);
+  239 |         deleteUser(api, body.email);
+  240 |       });
+  241 | 
+  242 | });
+```

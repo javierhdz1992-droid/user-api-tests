@@ -1,0 +1,6 @@
+POST Response: {
+  age: 107,
+  email: 'test1777666026571@mail.com',
+  name: 'Test User: 1777666026587'
+}
+Status Code: 200
