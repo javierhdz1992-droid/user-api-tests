@@ -6,7 +6,7 @@ on:
   pull_request:
 
 permissions:
-  contents: write   # necesario para crear gh-pages
+  contents: write
 
 jobs:
   test:
@@ -26,6 +26,24 @@ jobs:
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
+
+      # 🐳 Levantar API en Docker
+      - name: Start API with Docker
+        run: |
+          docker run -d -p 3000:3000 ghcr.io/danielsilva-loanpro/sdet-interview-challenge:latest
+
+      # ⏳ Esperar a que la API esté lista
+      - name: Wait for API
+        run: |
+          for i in {1..15}; do
+            curl -f http://localhost:3000/dev/users && break
+            echo "Waiting for API..."
+            sleep 3
+          done
+
+      # (Opcional) variable de entorno
+      - name: Set BASE_URL
+        run: echo "BASE_URL=http://localhost:3000" >> $GITHUB_ENV
 
       - name: Run tests
         run: npx playwright test
@@ -54,7 +72,7 @@ jobs:
           name: allure-report
           path: allure-report
 
-      # 🚀 DEPLOY (SIN BLOQUEOS)
+      # 🚀 Publicar en GitHub Pages
       - name: Deploy Allure Report to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v4
