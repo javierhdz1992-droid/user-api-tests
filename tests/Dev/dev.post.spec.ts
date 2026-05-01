@@ -70,7 +70,7 @@ async function deleteUser(api: APIRequestContext, email: string) {
 
 test.describe('Validate POST Endpoint - Create user', () => {
 
-  test('POST - Create user successfully - Status 201', async () => {
+  test('POST - Create user successfully - Status Code 201', async () => {
     const api = await getRequestContext(true);
 
     const res = await createUser(api, generateUser(), generateEmail(), generateAge());
@@ -85,7 +85,7 @@ test.describe('Validate POST Endpoint - Create user', () => {
     await deleteUser(api, body.email);
   });
 
-  test('POST - Create user without name - Status 400', async () => {
+  test('POST - Create user without name - Status Code 400', async () => {
     const api = await getRequestContext(true);
 
     const res = await createUserWithoutName(api, generateEmail(), generateAge());
@@ -98,7 +98,7 @@ test.describe('Validate POST Endpoint - Create user', () => {
     expect.soft(res.status()).toBe(400);
   });
 
-  test('POST - Create user without email - Status 400', async () => {
+  test('POST - Create user without email - Status Code 400', async () => {
     const api = await getRequestContext(true);
     
     const res = await createUserWithoutEmail(api, generateUser(), generateAge());
@@ -111,7 +111,7 @@ test.describe('Validate POST Endpoint - Create user', () => {
     expect.soft(res.status()).toBe(400);
   });
 
-  test('POST - Create user without age - Status 400', async () => {
+  test('POST - Create user without age - Status Code 400', async () => {
     const api = await getRequestContext(true);
     
     const res = await createUserWithoutAge(api, generateUser(), generateEmail());
@@ -124,7 +124,7 @@ test.describe('Validate POST Endpoint - Create user', () => {
     expect.soft(res.status()).toBe(400);
   });
 
-  test('POST - Create user with duplicate name - Status 201', async () => {
+  test('POST - Create user with duplicate name - Status Code 201', async () => {
     const api = await getRequestContext(true);
     const name = generateUser();
     const email1 = generateEmail();
@@ -144,7 +144,7 @@ test.describe('Validate POST Endpoint - Create user', () => {
     await deleteUser(api, email2);
   });
 
-    test('POST - Create user with duplicate email - Status 409', async () => {
+    test('POST - Create user with duplicate email - Status Code 409', async () => {
     const api = await getRequestContext(true);
     const email = generateEmail();
 
@@ -161,7 +161,7 @@ test.describe('Validate POST Endpoint - Create user', () => {
     await deleteUser(api, email);
   });
 
-  test('POST - Create user with duplicate age - Status 201', async () => {
+  test('POST - Create user with duplicate age - Status Code 201', async () => {
     const api = await getRequestContext(true);
     const age = generateAge();
     const email1 = generateEmail();
@@ -182,7 +182,7 @@ test.describe('Validate POST Endpoint - Create user', () => {
   });
 
 
-  test('POST - Create user with age less than 1 - Status 400', async () => {
+  test('POST - Create user with age less than 1 - Status Code 400', async () => {
     const api = await getRequestContext(true);
 
     const res = await createUser(api, generateUser(), generateEmail(), -1);
@@ -195,7 +195,7 @@ test.describe('Validate POST Endpoint - Create user', () => {
     expect.soft(res.status()).toBe(400);
   });
 
-  test('POST - Create user with age greater than 150 - Status 400', async () => {
+  test('POST - Create user with age greater than 150 - Status Code 400', async () => {
     const api = await getRequestContext(true);
 
     const res = await createUser(api, generateUser(), generateEmail(), 151);
@@ -208,7 +208,7 @@ test.describe('Validate POST Endpoint - Create user', () => {
     expect.soft(res.status()).toBe(400);
   });
 
-  test('POST - Create user with String age  - Status 400', async () => {
+    test('POST - Create user with String age  - Status Code 400', async () => {
     const api = await getRequestContext(true);
 
     const res = await createUserStringAge(api, generateUser(), generateEmail(), "55");
@@ -221,7 +221,7 @@ test.describe('Validate POST Endpoint - Create user', () => {
     expect.soft(res.status()).toBe(400);
   });
 
-  test('POST - Create user without authentication - Status 401', async () => {
+  test('POST - Create user without authentication - Status Code 401', async () => {
         const api = await request.newContext({
           baseURL: process.env.BASE_URL,
           extraHTTPHeaders: {

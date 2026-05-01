@@ -89,7 +89,7 @@ async function updateUserStringAge(api: APIRequestContext, name: string, email: 
 
 test.describe('Validate PUT Endpoint - Update a user', () => {
 
-  test('PUT - Update user successfully - Status 200', async () => {
+  test('PUT - Update user successfully - Status Code 200', async () => {
     const api = await getRequestContext(true);
     const email = generateEmail();
 
@@ -108,7 +108,7 @@ test.describe('Validate PUT Endpoint - Update a user', () => {
     await deleteUser(api, body.email);
   });
 
-  test('PUT - Update user without name - Status 400', async () => {
+  test('PUT - Update user without name - Status Code 400', async () => {
     const api = await getRequestContext(true);
     const email = generateEmail();
 
@@ -127,7 +127,7 @@ test.describe('Validate PUT Endpoint - Update a user', () => {
     await deleteUser(api, body.email);
   });
 
-  test('PUT - Update user without email - Status 400', async () => {
+  test('PUT - Update user without email - Status Code 400', async () => {
     const api = await getRequestContext(true);
     const email = generateEmail();
 
@@ -146,7 +146,7 @@ test.describe('Validate PUT Endpoint - Update a user', () => {
     await deleteUser(api, body.email);
   });
 
-  test('PUT - Update user without age - Status 400', async () => {
+  test('PUT - Update user without age - Status Code 400', async () => {
     const api = await getRequestContext(true);
     const email = generateEmail();
 
@@ -165,7 +165,7 @@ test.describe('Validate PUT Endpoint - Update a user', () => {
     await deleteUser(api, body.email);
   });
 
-  test('PUT - Update user with duplicate email - Status 409', async () => {
+  test('PUT - Update user with duplicate email - Status Code 409', async () => {
     const api = await getRequestContext(true);
     const email1 = generateEmail();
 
@@ -197,7 +197,7 @@ test.describe('Validate PUT Endpoint - Update a user', () => {
   });
 
 
-  test('PUT - Update user with age less than 1 - Status 400', async () => {
+  test('PUT - Update user with age less than 1 - Status Code 400', async () => {
     const api = await getRequestContext(true);
     const email = generateEmail();
 
@@ -216,7 +216,7 @@ test.describe('Validate PUT Endpoint - Update a user', () => {
     await deleteUser(api, body.email);
   });
 
-  test('PUT - Update user with age greater than 150 - Status 400', async () => {
+  test('PUT - Update user with age greater than 150 - Status Code 400', async () => {
     const api = await getRequestContext(true);
     const email = generateEmail();
 
@@ -235,7 +235,7 @@ test.describe('Validate PUT Endpoint - Update a user', () => {
     await deleteUser(api, body.email);
   });
 
-    test('PUT - Update user string age - Status 400', async () => {
+    test('PUT - Update user string age - Status Code 400', async () => {
       const api = await getRequestContext(true);
       const email = generateEmail();
   
@@ -254,7 +254,7 @@ test.describe('Validate PUT Endpoint - Update a user', () => {
       await deleteUser(api, body.email);
     });
 
-  test('PUT - Update user without Email Header - Status 400', async () => {
+  test('PUT - Update user without Email Header - Status Code 400', async () => {
     const api = await getRequestContext(true);
     const email = generateEmail();
 
@@ -273,7 +273,7 @@ test.describe('Validate PUT Endpoint - Update a user', () => {
     await deleteUser(api, body.email);
   });
 
-  test('PUT - Update user without authentication - Status 401', async () => {
+  test('PUT - Update user without authentication - Status Code 401', async () => {
           const api = await request.newContext({
             baseURL: process.env.BASE_URL,
             extraHTTPHeaders: {

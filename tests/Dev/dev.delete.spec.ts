@@ -37,7 +37,7 @@ async function deleteUserWithoutEmailHeader(api: APIRequestContext) {
 
 test.describe('Validate DELETE Endpoint - List of users', () => {
 
-  test('DELETE - Delete user successfully by email - Status 204', async () => {
+  test('DELETE - Delete user successfully by email - Status Code 204', async () => {
     const api = await getRequestContext(true);
     const email = generateEmail();
 
@@ -52,7 +52,7 @@ test.describe('Validate DELETE Endpoint - List of users', () => {
     expect.soft(deleteRes.status()).toBe(204);
   });
 
-  test('DELETE - Delete user using non existing email - Status 404', async () => {
+  test('DELETE - Delete user using non existing email - Status Code 404', async () => {
     const api = await getRequestContext(true);
     const email = generateEmail();
 
@@ -65,7 +65,7 @@ test.describe('Validate DELETE Endpoint - List of users', () => {
     expect.soft(deleteRes.status()).toBe(404);
   });
 
-    test('DELETE - Delete specific user by name - Status 404', async () => {
+    test('DELETE - Delete specific user by name - Status Code 404', async () => {
     const api = await getRequestContext(true);
     const name = generateUser();
     const email = generateEmail();
@@ -84,7 +84,7 @@ test.describe('Validate DELETE Endpoint - List of users', () => {
     await deleteUser(api, email);
   });
 
-  test('DELETE - Delete specific user by age - Status 404', async () => {
+  test('DELETE - Delete specific user by age - Status Code 404', async () => {
     const api = await getRequestContext(true);
     const email = generateEmail();
     const age = generateAge();
@@ -103,7 +103,7 @@ test.describe('Validate DELETE Endpoint - List of users', () => {
     await deleteUser(api, email);
   });
 
-  test('DELETE - Delete user twice - Status 404', async () => {
+  test('DELETE - Delete user twice - Status Code 404', async () => {
     const api = await getRequestContext(true);
     const email = generateEmail();
 
@@ -118,7 +118,7 @@ test.describe('Validate DELETE Endpoint - List of users', () => {
     expect.soft(deleteRes.status()).toBe(404);
   });
 
-  test('DELETE - Delete user without Email Header - Status 400', async () => {
+  test('DELETE - Delete user without Email Header - Status Code 400', async () => {
     const api = await getRequestContext(true);
 
     const deleteRes = await deleteUserWithoutEmailHeader(api);
@@ -130,7 +130,7 @@ test.describe('Validate DELETE Endpoint - List of users', () => {
     expect.soft(deleteRes.status()).toBe(400);
   });
 
-  test('DELETE - Delete user without authentication - Status 401', async () => {
+  test('DELETE - Delete user without authentication - Status Code 401', async () => {
     const api = await request.newContext({
           baseURL: process.env.BASE_URL,
           extraHTTPHeaders: {

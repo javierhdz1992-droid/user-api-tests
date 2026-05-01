@@ -32,7 +32,7 @@ async function deleteUser(api: APIRequestContext, email: string) {
 
 test.describe('Validate GET Endpoint - List of users', () => {
 
-  test('GET - List users successfully - Status 200', async () => {
+  test('GET - List users successfully - Status Code 200', async () => {
     const api = await getRequestContext(true);
     const res = await api.get('/prod/users');
     const body = await res.json();
@@ -43,7 +43,7 @@ test.describe('Validate GET Endpoint - List of users', () => {
     expect.soft(res.status()).toBe(200);
   });
 
-  test('GET - Retrieve specific user successfully by email - Status 200', async () => {
+  test('GET - Retrieve specific user successfully by email - Status Code 200', async () => {
     const api = await getRequestContext(true);
     const email = generateEmail();
 
@@ -61,7 +61,7 @@ test.describe('Validate GET Endpoint - List of users', () => {
     await deleteUser(api, email);
   });
 
-  test('GET - Retrieve user using non existing email - Status 404', async () => {
+  test('GET - Retrieve user using non existing email - Status Code 404', async () => {
     const api = await getRequestContext(true);
     const email = generateEmail();
 
@@ -75,7 +75,7 @@ test.describe('Validate GET Endpoint - List of users', () => {
     expect.soft(res.status()).toBe(404);
   });
 
-    test('GET - Retrieve specific user by name - Status 404', async () => {
+    test('GET - Retrieve specific user by name - Status Code 404', async () => {
     const api = await getRequestContext(true);
     const name = generateUser();
     const email = generateEmail();
@@ -94,7 +94,7 @@ test.describe('Validate GET Endpoint - List of users', () => {
     await deleteUser(api, email);
   });
 
-  test('GET - Retrieve specific user by age - Status 404', async () => {
+  test('GET - Retrieve specific user by age - Status Code 404', async () => {
     const api = await getRequestContext(true);
     const email = generateEmail();
     const age = generateAge();
@@ -113,7 +113,7 @@ test.describe('Validate GET Endpoint - List of users', () => {
     await deleteUser(api, email);
   });
 
-  test('GET - Get users without authentication - Status 401', async () => {
+  test('GET - Get users without authentication - Status Code 401', async () => {
       const api = await request.newContext({
         baseURL: process.env.BASE_URL,
         extraHTTPHeaders: {
