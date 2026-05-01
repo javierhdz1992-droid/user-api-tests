@@ -1,11 +1,10 @@
-import { test, expect, APIRequestContext, request } from '@playwright/test';
+﻿import { test, expect, APIRequestContext, request } from '@playwright/test';
 import { getRequestContext } from '../../utils/apiClient';
 import dotenv from 'dotenv';
 
 
 dotenv.config();
 
-// 🔧 Helpers
 function generateEmail() {
   return `test${Date.now()}@mail.com`;
 }
@@ -102,6 +101,21 @@ test.describe('Validate DELETE Endpoint - List of users', () => {
     expect.soft(res.status()).toBe(404);
 
     await deleteUser(api, email);
+  });
+
+  test('DELETE - Delete user twice - Status 404', async () => {
+    const api = await getRequestContext(true);
+    const email = generateEmail();
+
+    const createRes = await createUser(api, generateUser(), email, generateAge());
+    const bodyCreate = await createRes.json();
+
+    await deleteUser(api, email);
+    const deleteRes = await deleteUser(api, email);
+
+    console.log('Status Code:', deleteRes.status());
+
+    expect.soft(deleteRes.status()).toBe(404);
   });
 
   test('DELETE - Delete user without Email Header - Status 400', async () => {

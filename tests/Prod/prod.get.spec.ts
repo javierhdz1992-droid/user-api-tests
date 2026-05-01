@@ -1,10 +1,9 @@
-import { test, expect, APIRequestContext, request } from '@playwright/test';
+﻿import { test, expect, APIRequestContext, request } from '@playwright/test';
 import { getRequestContext } from '../../utils/apiClient';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-// 🔧 Helpers
 function generateEmail() {
   return `test${Date.now()}@mail.com`;
 }

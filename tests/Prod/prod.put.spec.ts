@@ -4,7 +4,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// 🔧 Helpers
 function generateEmail() {
   return `test${Date.now()}@mail.com`;
 }
@@ -76,6 +75,16 @@ async function updateUserWithoutHeader(api: APIRequestContext, name: string, ema
 
 async function deleteUser(api: APIRequestContext, email: string) {
   return await api.delete(`/prod/users/${email}`);
+}
+
+async function updateUserStringAge(api: APIRequestContext, name: string, email: string, age: string) {
+  return await api.put(`/prod/users/${email}`, {
+    data: {
+      name: name,
+      email: email,
+      age: age
+    }
+  });
 }
 
 test.describe('Validate PUT Endpoint - Update a user', () => {
@@ -164,7 +173,6 @@ test.describe('Validate PUT Endpoint - Update a user', () => {
     const bodyCreate1 = await createRes1.json();
     console.log('User Created: ', bodyCreate1);
 
-     // Create another user with the same name but different email
     const email2 = generateEmail();
     const createRes2 = await createUser(api, generateUser(), email2, generateAge());
     const bodyCreate2 = await createRes2.json();
@@ -226,6 +234,25 @@ test.describe('Validate PUT Endpoint - Update a user', () => {
 
     await deleteUser(api, body.email);
   });
+
+    test('PUT - Update user string age - Status 400', async () => {
+      const api = await getRequestContext(true);
+      const email = generateEmail();
+  
+      const createRes = await createUser(api, generateUser(), email, generateAge());
+      const bodyCreate = await createRes.json();
+      console.log('User Created: ', bodyCreate);
+  
+      const updateRes = await updateUserStringAge(api, generateUser(), email, "55");
+      const body = await updateRes.json();
+  
+      console.log('PUT Response:', body);
+      console.log('Status Code:', updateRes.status());
+  
+      expect.soft(updateRes.status()).toBe(400);
+  
+      await deleteUser(api, body.email);
+    });
 
   test('PUT - Update user without Email Header - Status 400', async () => {
     const api = await getRequestContext(true);

@@ -4,7 +4,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// 🔧 Helpers
 function generateEmail() {
   return `test${Date.now()}@mail.com`;
 }
@@ -128,7 +127,7 @@ test.describe('Validate GET Endpoint - List of users', () => {
       console.log('GET Response:', body);
       console.log('Status Code:', response.status());
   
-      //expect.soft(response.status()).toBe(401);
+      expect.soft(response.status()).toBe(401);
     });
 
 });

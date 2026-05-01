@@ -5,7 +5,6 @@ import { create } from 'node:domain';
 
 dotenv.config();
 
-// 🔧 Helpers
 function generateEmail() {
   return `test${Date.now()}@mail.com`;
 }
@@ -51,6 +50,16 @@ async function createUserWithoutAge(api: APIRequestContext, name: string, email:
     data: {
       name: name,
       email: email
+    }
+  });
+}
+
+async function createUserStringAge(api: APIRequestContext, name: string, email: string, age: string) {
+  return await api.post('/prod/users', {
+    data: {
+      name: name,
+      email: email,
+      age: age
     }
   });
 }
@@ -122,7 +131,6 @@ test.describe('Validate POST Endpoint - Create user', () => {
 
     let res = await createUser(api, name, email1, generateAge());
 
-     // Create another user with the same name but different email
     const email2 = generateEmail();
     res = await createUser(api, name, email2, generateAge());
 
@@ -142,7 +150,6 @@ test.describe('Validate POST Endpoint - Create user', () => {
 
     let res = await createUser(api, generateUser(), email, generateAge());
 
-     // Create another user with the same name but different email
     res = await createUser(api, generateUser(), email, generateAge());
 
     const body = await res.json();
@@ -161,7 +168,6 @@ test.describe('Validate POST Endpoint - Create user', () => {
 
     let res = await createUser(api, generateUser(), email1, age);
 
-     // Create another user with the same age.
     const email2 = generateEmail();
     res = await createUser(api, generateUser(), email2, age);
 
@@ -202,20 +208,18 @@ test.describe('Validate POST Endpoint - Create user', () => {
     expect.soft(res.status()).toBe(400);
   });
 
-  test('POST - Create user without Authorization Header - Status 401', async () => {
-    const api = await getRequestContext(false);
-
-    const res = await createUser(api, generateUser(), generateEmail(), generateAge());
-
-    const body = await res.json();
-
-    console.log('POST Response:', body);
-    console.log('Status Code:', res.status());
-
-    //expect.soft(res.status()).toBe(201);
-
-    await deleteUser(api, body.email);
-  });
+    test('POST - Create user with String age  - Status 400', async () => {
+      const api = await getRequestContext(true);
+  
+      const res = await createUserStringAge(api, generateUser(), generateEmail(), "55");
+  
+      const body = await res.json();
+  
+      console.log('Status Code:', res.status());
+      console.log('POST Response:', body);
+  
+      expect.soft(res.status()).toBe(400);
+    });
 
   test('POST - Create user without authentication - Status 401', async () => {
         const api = await request.newContext({
