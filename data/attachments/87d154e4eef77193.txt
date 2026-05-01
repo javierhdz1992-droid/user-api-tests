@@ -1,0 +1,6 @@
+User Created:  {
+  age: 9,
+  email: 'test1777666809530@mail.com',
+  name: 'Test User: 1777666809530'
+}
+Status Code: 204

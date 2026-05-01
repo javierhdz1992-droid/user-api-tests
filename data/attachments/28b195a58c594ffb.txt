@@ -1,0 +1,11 @@
+User Created:  {
+  age: 3,
+  email: 'test1777666825829@mail.com',
+  name: 'Test User: 1777666825829'
+}
+PUT Response: {
+  age: 108,
+  email: 'test1777666825829@mail.com',
+  name: 'Test User: 1777666825849'
+}
+Status Code: 200

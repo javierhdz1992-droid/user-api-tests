@@ -1,0 +1,103 @@
+GET Response: [
+  {
+    age: 48,
+    email: 'test1777666830099@mail.com',
+    name: 'Test User: 1777666830099'
+  },
+  {
+    age: 104,
+    email: 'test1777666830754@mail.com',
+    name: 'Test User: 1777666830754'
+  },
+  {
+    age: 132,
+    email: 'test1777666831411@mail.com',
+    name: 'Test User: 1777666831411'
+  },
+  {
+    age: 4,
+    email: 'test1777666834032@mail.com',
+    name: 'Test User: 1777666834032'
+  },
+  {
+    age: 24,
+    email: 'test1777666834695@mail.com',
+    name: 'Test User: 1777666834695'
+  },
+  {
+    age: 40,
+    email: 'test1777666835356@mail.com',
+    name: 'Test User: 1777666835356'
+  },
+  {
+    age: 41,
+    email: 'test1777666836013@mail.com',
+    name: 'Test User: 1777666836013'
+  },
+  {
+    age: 114,
+    email: 'test1777666836672@mail.com',
+    name: 'Test User: 1777666836672'
+  },
+  {
+    age: 82,
+    email: 'test1777666837340@mail.com',
+    name: 'Test User: 1777666837340'
+  },
+  {
+    age: 56,
+    email: 'test1777666837995@mail.com',
+    name: 'Test User: 1777666837995'
+  },
+  {
+    age: 106,
+    email: 'test1777666838649@mail.com',
+    name: 'Test User: 1777666838649'
+  },
+  {
+    age: 71,
+    email: 'test1777666839313@mail.com',
+    name: 'Test User: 1777666839313'
+  },
+  {
+    age: 32,
+    email: 'test1777666841935@mail.com',
+    name: 'Test User: 1777666841935'
+  },
+  {
+    age: 63,
+    email: 'test1777666842023@mail.com',
+    name: 'Test User: 1777666842023'
+  },
+  {
+    age: 9,
+    email: 'test1777666844006@mail.com',
+    name: 'Test User: 1777666844006'
+  },
+  {
+    age: 3,
+    email: 'test1777666844673@mail.com',
+    name: 'Test User: 1777666844673'
+  },
+  {
+    age: 23,
+    email: 'test1777666845336@mail.com',
+    name: 'Test User: 1777666845336'
+  },
+  {
+    age: 80,
+    email: 'test1777666846019@mail.com',
+    name: 'Test User: 1777666846019'
+  },
+  {
+    age: 34,
+    email: 'test1777666846683@mail.com',
+    name: 'Test User: 1777666846683'
+  },
+  {
+    age: 32,
+    email: 'test1777666847357@mail.com',
+    name: 'Test User: 1777666847357'
+  }
+]
+Status Code: 200

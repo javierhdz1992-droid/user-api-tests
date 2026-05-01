@@ -1,0 +1,7 @@
+User Created:  {
+  age: 147,
+  email: 'test1777666854517@mail.com',
+  name: 'Test User: 1777666854517'
+}
+PUT Response: { error: 'Internal server error' }
+Status Code: 500

@@ -1,0 +1,6 @@
+User Created:  {
+  age: 48,
+  email: 'test1777666830099@mail.com',
+  name: 'Test User: 1777666830099'
+}
+Status Code: 401

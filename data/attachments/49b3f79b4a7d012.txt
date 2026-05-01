@@ -1,0 +1,6 @@
+GET Response: {
+  age: 114,
+  email: 'test1777666813650@mail.com',
+  name: 'Test User: 1777666813650'
+}
+Status Code: 200
