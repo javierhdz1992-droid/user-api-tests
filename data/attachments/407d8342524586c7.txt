@@ -1,0 +1,2 @@
+GET Response: { error: 'Internal server error' }
+Status Code: 500

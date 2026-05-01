@@ -1,0 +1,2 @@
+Status Code: 401
+DELETE Response: { error: 'Authentication required' }

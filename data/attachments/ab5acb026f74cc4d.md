@@ -1,0 +1,130 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Dev/dev.put.spec.ts >> Validate PUT Endpoint - Update a user >> PUT - Update user without authentication - Status 401
+- Location: tests/Dev/dev.put.spec.ts:249:7
+
+# Error details
+
+```
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 401
+Received: 200
+```
+
+# Test source
+
+```ts
+  165 |     console.log('User Created: ', bodyCreate1);
+  166 | 
+  167 |      // Create another user with the same name but different email
+  168 |     const email2 = generateEmail();
+  169 |     const createRes2 = await createUser(api, generateUser(), email2, generateAge());
+  170 |     const bodyCreate2 = await createRes2.json();
+  171 |     console.log('User Created: ', bodyCreate2);
+  172 | 
+  173 |     const updateRes = await api.put(`/dev/users/${email1}`, {
+  174 |     data: {
+  175 |       name: generateUser(),
+  176 |       email: email2,
+  177 |       age: generateAge()
+  178 |     }
+  179 |     });
+  180 |     
+  181 |     const body = await updateRes.json();
+  182 | 
+  183 |     console.log('Status Code:', updateRes.status());
+  184 |     console.log('PUT Response:', body);
+  185 | 
+  186 |     expect.soft(updateRes.status()).toBe(409);
+  187 |     await deleteUser(api, email1);
+  188 |     await deleteUser(api, email2);
+  189 |   });
+  190 | 
+  191 | 
+  192 |   test('PUT - Update user with age less than 1 - Status 400', async () => {
+  193 |     const api = await getRequestContext(true);
+  194 |     const email = generateEmail();
+  195 | 
+  196 |     const createRes = await createUser(api, generateUser(), email, generateAge());
+  197 |     const bodyCreate = await createRes.json();
+  198 |     console.log('User Created: ', bodyCreate);
+  199 | 
+  200 |     const updateRes = await updateUser(api, generateUser(), email, -1);
+  201 |     const body = await updateRes.json();
+  202 | 
+  203 |     console.log('PUT Response:', body);
+  204 |     console.log('Status Code:', updateRes.status());
+  205 | 
+  206 |     expect.soft(updateRes.status()).toBe(400);
+  207 | 
+  208 |     await deleteUser(api, body.email);
+  209 |   });
+  210 | 
+  211 |   test('PUT - Update user with age greater than 150 - Status 400', async () => {
+  212 |     const api = await getRequestContext(true);
+  213 |     const email = generateEmail();
+  214 | 
+  215 |     const createRes = await createUser(api, generateUser(), email, generateAge());
+  216 |     const bodyCreate = await createRes.json();
+  217 |     console.log('User Created: ', bodyCreate);
+  218 | 
+  219 |     const updateRes = await updateUser(api, generateUser(), email, 151);
+  220 |     const body = await updateRes.json();
+  221 | 
+  222 |     console.log('PUT Response:', body);
+  223 |     console.log('Status Code:', updateRes.status());
+  224 | 
+  225 |     expect.soft(updateRes.status()).toBe(400);
+  226 | 
+  227 |     await deleteUser(api, body.email);
+  228 |   });
+  229 | 
+  230 |   test('PUT - Update user without Email Header - Status 400', async () => {
+  231 |     const api = await getRequestContext(true);
+  232 |     const email = generateEmail();
+  233 | 
+  234 |     const createRes = await createUser(api, generateUser(), email, generateAge());
+  235 |     const bodyCreate = await createRes.json();
+  236 |     console.log('User Created: ', bodyCreate);
+  237 | 
+  238 |     const updateRes = await updateUserWithoutHeader(api, generateUser(), email, generateAge());
+  239 |     const body = await updateRes.json();
+  240 | 
+  241 |     console.log('PUT Response:', body);
+  242 |     console.log('Status Code:', updateRes.status());
+  243 | 
+  244 |     expect.soft(updateRes.status()).toBe(400);
+  245 | 
+  246 |     await deleteUser(api, body.email);
+  247 |   });
+  248 | 
+  249 |   test('PUT - Update user without authentication - Status 401', async () => {
+  250 |           const api = await request.newContext({
+  251 |             baseURL: process.env.BASE_URL,
+  252 |             extraHTTPHeaders: {
+  253 |               'Content-Type': 'application/json'
+  254 |             }
+  255 |           });
+  256 |           
+  257 |           const email = generateEmail();
+  258 |           await createUser(api, generateUser(), email, generateAge());
+  259 |           const response = await updateUser(api, generateUser(), email, generateAge());
+  260 |           const body = await response.json();
+  261 |     
+  262 |           console.log('POST Response:', body);
+  263 |           console.log('Status Code:', response.status());
+  264 |       
+> 265 |           expect.soft(response.status()).toBe(401);
+      |                                          ^ Error: expect(received).toBe(expected) // Object.is equality
+  266 |           deleteUser(api, body.email);
+  267 |         });
+  268 | 
+  269 | });
+```
