@@ -22,7 +22,7 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: npm ci   # 🔥 mejor que npm install en CI
+        run: npm ci
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
@@ -54,9 +54,9 @@ jobs:
           name: allure-report
           path: allure-report
 
-      # 🚀 DEPLOY A GITHUB PAGES (SOLO EN MAIN)
+      # 🚀 DEPLOY (SIN BLOQUEOS)
       - name: Deploy Allure Report to GitHub Pages
-        if: github.ref == 'refs/heads/main'
+        if: always()
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
