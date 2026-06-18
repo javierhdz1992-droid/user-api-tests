@@ -113,5 +113,5 @@ jobs:
         if: always() && matrix.environment == 'dev'
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.AUTH_TOKEN }}
+          github_token: ${{ secrets.AUGITHUB_TOKEN }}
           publish_dir: allure-report
