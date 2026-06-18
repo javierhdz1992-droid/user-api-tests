@@ -8,7 +8,7 @@ export async function getRequestContext(authenticated: boolean = true): Promise<
 
   if (authenticated) {
     if (!process.env.AUTH_TOKEN) {
-      throw new Error('AUTH_TOKEN is not set. A .env file was not loaded or AUTH_TOKEN is missing.');
+      throw new Error('AUTH_TOKEN is not set. A .env dev/prod file was not loaded or AUTH_TOKEN is missing.');
     }
     headers['Authentication'] = process.env.AUTH_TOKEN;
   }
