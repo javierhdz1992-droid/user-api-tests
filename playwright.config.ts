@@ -1,37 +1,29 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig } from '@playwright/test';
 import dotenv from 'dotenv';
+import path from 'path';
 
-dotenv.config();
 
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-// import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
+const validEnvs = ['dev', 'prod'];
+const rawEnv = process.env.TEST_ENV?.trim().toLowerCase() ?? '';
+const env = validEnvs.includes(rawEnv) ? rawEnv : 'dev';
+process.env.TEST_ENV = env;
 
-/**
- * See https://playwright.dev/docs/test-configuration.
- */
+const envFile = path.resolve(__dirname, `.env.${env}`);
+dotenv.config({ path: envFile });
+
 export default defineConfig({
-  globalSetup: './globalSetup.ts',
   testDir: './tests',
-  /* Run tests in files in parallel */
-  fullyParallel: true,
-  /* Fail the build on CI if you accidentally left test.only in the source code. */
-  forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
-  /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
+  
+  use: {
+    baseURL: process.env.BASE_URL,
+    extraHTTPHeaders: {
+      Authentication: process.env.AUTH_TOKEN || 'mysecrettoken',
+      'Content-Type': 'application/json'
+    }
+  },
+
   reporter: [
     ['list'],
     ['allure-playwright']
-  ],
-  
-  use: {
-  baseURL: process.env.BASE_URL
-  }
+  ]
 });
