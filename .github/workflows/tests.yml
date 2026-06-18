@@ -52,6 +52,10 @@ jobs:
             sleep 3
           done
           echo "API failed to start"
+
+          echo "===== CONTAINER LOGS =====" 
+          docker logs user-api
+
           exit 1
 
       - name: Configure Environment Variables
@@ -63,10 +67,22 @@ jobs:
       - name: Display Environment
         run: |
           echo "Running tests against:"
-          echo "$BASE_URL"
+          echo "TEST_ENV=$TEST_ENV" 
+          echo "BASE_URL=$BASE_URL"
+
+      - name: Validate Environment Endpoint 
+        run: | 
+              echo "Checking endpoint..." 
+              curl -v $BASE_URL/users
 
       - name: Execute Playwright Tests
-        run: npx playwright test
+        run: npx playwright test --workers=1
+
+      - name: Display Docker Logs on Failure 
+        if: failure() 
+        run: | 
+          echo "===== CONTAINER LOGS =====" 
+          docker logs user-api
 
       - name: Verify Allure Results
         if: always()
@@ -97,5 +113,5 @@ jobs:
         if: always() && matrix.environment == 'dev'
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.AUTH_TOKEN }}
           publish_dir: allure-report
