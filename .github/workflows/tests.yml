@@ -104,18 +104,18 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: allure-results-${{ matrix.environment }}
+          name: allure-results
           path: allure-results
 
       - name: Upload Allure Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: allure-report-${{ matrix.environment }}
+          name: allure-report
           path: allure-report
 
       - name: Deploy Allure Report to GitHub Pages
-        if: always() && matrix.environment == 'dev'
+        if: always()
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
