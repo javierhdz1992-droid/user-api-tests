@@ -3,7 +3,7 @@ import { getRequestContext } from '../utils/apiClient';
 import { UserApi } from '../api/UserApi';
 import { DataGenerator } from '../utils/dataGenerator';
 
-test.describe('Validate POST Endpoint - Create user', () => {
+test.describe('Validate POST Endpoint - Create user tests', () => {
 
   test('POST - Create user successfully - Status Code 201', async () => {
 
