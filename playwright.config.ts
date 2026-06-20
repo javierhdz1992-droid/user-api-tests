@@ -9,7 +9,7 @@ const env = validEnvs.includes(rawEnv) ? rawEnv : 'dev';
 process.env.TEST_ENV = env;
 
 const envFile = path.resolve(__dirname, `.env.${env}`);
-dotenv.config({ path: envFile });
+dotenv.config({ path: envFile, override: false });
 
 export default defineConfig({
   testDir: './tests',
