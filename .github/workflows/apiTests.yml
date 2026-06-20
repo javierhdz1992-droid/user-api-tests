@@ -64,7 +64,7 @@ jobs:
       - name: Configure Environment Variables
         run: |
           ENVIRONMENT="${{ github.event.inputs.environment }}"
-          ENVIRONMENT=${ENVIRONMENT:-prod}
+          ENVIRONMENT=${ENVIRONMENT:-dev}
 
           echo "TEST_ENV=$ENVIRONMENT" >> $GITHUB_ENV
           echo "BASE_URL=http://localhost:3000/$ENVIRONMENT/" >> $GITHUB_ENV
