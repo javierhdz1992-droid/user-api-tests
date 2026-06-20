@@ -108,6 +108,12 @@ jobs:
           echo "===== CONTAINER LOGS =====" 
           docker logs user-api
 
+      - name: Show Docker Logs
+        if: always()
+        run: |
+          docker ps -a
+          docker logs $(docker ps -q)
+
       - name: Verify Allure Results
         if: always()
         run: |

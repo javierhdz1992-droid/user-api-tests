@@ -11,6 +11,10 @@ export class UserApi{
     constructor(private api: APIRequestContext) {}
 
     async createUser(user: User) {
+
+        console.log('REQUEST URL:', ENDPOINTS.USERS);
+        console.log('REQUEST BODY:', JSON.stringify(user));
+
         return await this.api.post(ENDPOINTS.USERS, {
             data: user
         });
