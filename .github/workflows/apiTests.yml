@@ -90,6 +90,11 @@ jobs:
               docker ps -a
               docker logs $(docker ps -q)
 
+      - name: Clean Allure folders
+        run: |
+            rm -rf allure-results
+            rm -rf allure-report
+
       - name: Execute Playwright Tests
         run: npx playwright test
 
