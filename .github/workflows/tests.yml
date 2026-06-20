@@ -100,7 +100,7 @@ jobs:
           -d '{"name":"Test User","email":"test@mail.com","age":30}'
 
       - name: Execute Playwright Tests
-        run: npx playwright test --workers=1
+        run: npx playwright test
 
       - name: Display Docker Logs on Failure 
         if: failure() 
