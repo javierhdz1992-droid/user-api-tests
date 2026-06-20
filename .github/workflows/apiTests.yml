@@ -146,3 +146,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: allure-report
+          force_orphan: true
+          commit_message: "Update Allure report - ${{ github.run_number }}"
