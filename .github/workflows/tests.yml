@@ -18,8 +18,6 @@ on:
 permissions:
   contents: write
 
-
-
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -68,7 +66,7 @@ jobs:
           ENVIRONMENT="${{ github.event.inputs.environment }}"
 
           if [ -z "$ENVIRONMENT" ]; then
-            ENVIRONMENT="dev"
+            ENVIRONMENT="prod"
           fi
 
           echo "TEST_ENV=$ENVIRONMENT" >> $GITHUB_ENV
