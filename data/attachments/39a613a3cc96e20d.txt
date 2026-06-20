@@ -1,0 +1,3 @@
+User Created: { age: 100, email: 'ida_rowe78@testmail.com', name: 'Mabel Kilback' }
+GET Response: { error: 'Internal server error' }
+Status Code: 500

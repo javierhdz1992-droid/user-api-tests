@@ -1,0 +1,11 @@
+User Created: {
+  age: 141,
+  email: 'isaiah.koch50@testmail.com',
+  name: 'Mr. Philip Stoltenberg'
+}
+PUT Response: {
+  age: 147,
+  email: 'isaiah.koch50@testmail.com',
+  name: 'Mr. Philip Stoltenberg'
+}
+Status Code: 200

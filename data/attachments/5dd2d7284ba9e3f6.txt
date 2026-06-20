@@ -1,0 +1,12 @@
+User1 Created: {
+  age: 32,
+  email: 'cathy_hyatt@testmail.com',
+  name: 'Lindsay Reilly IV'
+}
+User2 Created: {
+  age: 51,
+  email: 'jorge.kuhlman@testmail.com',
+  name: 'Moises Bartoletti'
+}
+PUT Response: { error: 'Email already exists' }
+Status Code: 409

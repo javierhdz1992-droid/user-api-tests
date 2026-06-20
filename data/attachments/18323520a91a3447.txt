@@ -1,0 +1,2 @@
+User Created: { age: 81, email: 'jailyn63@testmail.com', name: 'Kaela Borer' }
+Status Code: 204

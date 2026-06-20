@@ -1,0 +1,3 @@
+User Created: { age: 62, email: 'irma72@testmail.com', name: 'Chandler Gerhold' }
+DELETE Response: { error: 'User not found' }
+Status Code: 404

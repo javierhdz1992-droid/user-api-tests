@@ -1,0 +1,7 @@
+User Created: {
+  age: 87,
+  email: 'fannie.ward@testmail.com',
+  name: 'Zack Abshire-Romaguera'
+}
+PUT Response: { age: 42, email: 'tre66@testmail.com', name: 'Mrs. Diana Aufderhar' }
+Status Code: 200

@@ -1,0 +1,2 @@
+Status Code: 500
+DELETE Response: { error: 'Internal server error' }

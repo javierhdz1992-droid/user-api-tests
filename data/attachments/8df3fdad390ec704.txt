@@ -1,0 +1,3 @@
+User Created: { age: 137, email: 'israel40@testmail.com', name: 'Pete Schowalter' }
+PUT Response: { error: 'email is required' }
+Status Code: 400

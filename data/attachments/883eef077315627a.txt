@@ -1,0 +1,3 @@
+User Created: { age: 149, email: 'clark95@testmail.com', name: 'Cheyenne Schaefer' }
+PUT Response: { age: 149, email: 'clark95@testmail.com', name: 'Miranda Torp' }
+Status Code: 200

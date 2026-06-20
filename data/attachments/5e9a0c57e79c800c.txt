@@ -1,0 +1,7 @@
+User1 Created: { age: 41, email: 'aleen23@testmail.com', name: 'Abdiel Bartoletti' }
+User2 Created: { age: 13, email: 'clark79@testmail.com', name: 'Nayeli Moen II' }
+GET Response: [
+  { age: 41, email: 'aleen23@testmail.com', name: 'Abdiel Bartoletti' },
+  { age: 13, email: 'clark79@testmail.com', name: 'Nayeli Moen II' }
+]
+Status Code: 200

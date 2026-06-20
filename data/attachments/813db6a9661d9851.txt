@@ -1,0 +1,6 @@
+User Created: {
+  age: 125,
+  email: 'sherri.moore@testmail.com',
+  name: 'Madyson Tillman'
+}
+Status Code: 204

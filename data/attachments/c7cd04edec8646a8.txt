@@ -1,0 +1,7 @@
+User Created: {
+  age: 108,
+  email: 'erica_marquardt87@testmail.com',
+  name: 'Amya Hettinger'
+}
+DELETE Response: { error: 'User not found' }
+Status Code: 404

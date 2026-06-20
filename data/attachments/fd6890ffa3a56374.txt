@@ -1,0 +1,4 @@
+POST Response User 1: { age: 21, email: 'ramona.kulas@testmail.com', name: 'Mathew Kling' }
+Status Code User 1: 201
+POST Response User 2: { error: 'Internal server error' }
+Status Code User 2: 500

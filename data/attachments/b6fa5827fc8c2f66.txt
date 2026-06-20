@@ -1,0 +1,2 @@
+POST Response: { error: 'name is required' }
+Status Code: 400

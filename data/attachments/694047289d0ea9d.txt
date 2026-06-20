@@ -1,0 +1,7 @@
+User Created: {
+  age: 110,
+  email: 'darryl_dubuque34@testmail.com',
+  name: 'Mr. Dusty Orn'
+}
+PUT Response: { error: 'Age must be between 1 and 150' }
+Status Code: 400

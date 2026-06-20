@@ -1,0 +1,2 @@
+DELETE Response: { error: 'User not found' }
+Status Code: 404

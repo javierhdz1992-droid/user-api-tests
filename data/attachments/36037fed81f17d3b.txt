@@ -1,0 +1,11 @@
+User Created: {
+  age: 91,
+  email: 'catherine8@testmail.com',
+  name: 'Lucile Cartwright-Walsh'
+}
+PUT Response: {
+  age: 91,
+  email: 'garfield6@testmail.com',
+  name: 'Lucile Cartwright-Walsh'
+}
+Status Code: 200

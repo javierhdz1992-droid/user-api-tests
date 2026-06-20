@@ -1,0 +1,11 @@
+User Created: {
+  age: 32,
+  email: 'denise_huels41@testmail.com',
+  name: 'Francesco Maggio-Padberg'
+}
+GET Response: {
+  age: 32,
+  email: 'denise_huels41@testmail.com',
+  name: 'Francesco Maggio-Padberg'
+}
+Status Code: 200

@@ -1,0 +1,7 @@
+User Created: {
+  age: 120,
+  email: 'carlos.zieme86@testmail.com',
+  name: 'Joel Stokes III'
+}
+GET Response: { error: 'Internal server error' }
+Status Code: 500

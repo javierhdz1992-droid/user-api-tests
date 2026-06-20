@@ -1,0 +1,2 @@
+POST Response: { error: 'age is required' }
+Status Code: 400

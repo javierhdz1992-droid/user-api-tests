@@ -1,0 +1,8 @@
+POST Response User 1: {
+  age: 132,
+  email: 'wendy.cronin24@testmail.com',
+  name: 'Dallas Corwin'
+}
+Status Code User 1: 201
+POST Response User 2: { age: 99, email: 'tom38@testmail.com', name: 'Dallas Corwin' }
+Status Code User 2: 201

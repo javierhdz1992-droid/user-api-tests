@@ -1,0 +1,2 @@
+POST Response: { age: 72, email: 'archie56@testmail.com', name: 'Rusty Kutch V' }
+Status Code: 201

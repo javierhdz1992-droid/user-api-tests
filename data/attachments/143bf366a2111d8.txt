@@ -1,0 +1,2 @@
+POST Response: { error: 'email is required' }
+Status Code: 400

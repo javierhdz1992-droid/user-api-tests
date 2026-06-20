@@ -1,0 +1,7 @@
+User Created: {
+  age: 118,
+  email: 'shakira_hyatt67@testmail.com',
+  name: 'Mr. Ian Bailey'
+}
+DELETE Response: { error: 'User not found' }
+Status Code: 404

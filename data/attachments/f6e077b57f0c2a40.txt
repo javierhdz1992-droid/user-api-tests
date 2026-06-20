@@ -1,0 +1,8 @@
+POST Response User 1: { age: 124, email: 'abe82@testmail.com', name: 'Madie Raynor' }
+Status Code User 1: 201
+POST Response User 2: {
+  age: 124,
+  email: 'marietta_kunze@testmail.com',
+  name: 'Janice Bartoletti'
+}
+Status Code User 2: 201

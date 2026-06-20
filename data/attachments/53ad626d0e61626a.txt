@@ -1,0 +1,7 @@
+User Created: {
+  age: 58,
+  email: 'carlos_littel13@testmail.com',
+  name: 'Juana Fisher'
+}
+PUT Response: { error: 'Age must be between 1 and 150' }
+Status Code: 400

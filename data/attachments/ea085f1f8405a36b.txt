@@ -1,0 +1,3 @@
+User Created: { age: 58, email: 'darla79@testmail.com', name: 'Delphia Jenkins' }
+PUT Response: { age: 114, email: 'ofelia43@testmail.com', name: 'Delphia Jenkins' }
+Status Code: 200

@@ -1,0 +1,11 @@
+User Created: {
+  age: 27,
+  email: 'tamia.jacobson@testmail.com',
+  name: 'Mohammed McLaughlin-Murazik'
+}
+PUT Response: {
+  age: 86,
+  email: 'tamia.jacobson@testmail.com',
+  name: 'Edna Tremblay'
+}
+Status Code: 200

@@ -1,0 +1,7 @@
+User Created: { age: 49, email: 'forrest88@testmail.com', name: 'Lue Hilpert' }
+PUT Response: {
+  age: 49,
+  email: 'jeanne.waelchi@testmail.com',
+  name: 'Arturo Smitham'
+}
+Status Code: 200
