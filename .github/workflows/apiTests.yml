@@ -64,10 +64,7 @@ jobs:
       - name: Configure Environment Variables
         run: |
           ENVIRONMENT="${{ github.event.inputs.environment }}"
-
-          if [ -z "$ENVIRONMENT" ]; then
-            ENVIRONMENT="prod"
-          fi
+          ENVIRONMENT=${ENVIRONMENT:-prod}
 
           echo "TEST_ENV=$ENVIRONMENT" >> $GITHUB_ENV
           echo "BASE_URL=http://localhost:3000/$ENVIRONMENT/" >> $GITHUB_ENV
@@ -94,6 +91,14 @@ jobs:
         run: |
             rm -rf allure-results
             rm -rf allure-report
+            mkdir -p allure-results
+
+      - name: Create Allure Environment file
+        run: |
+          cat <<EOF > allure-results/environment.properties
+          Environment=$TEST_ENV
+          BaseURL=$BASE_URL
+          EOF
 
       - name: Execute Playwright Tests
         run: npx playwright test
