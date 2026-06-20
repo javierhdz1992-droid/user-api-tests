@@ -72,7 +72,7 @@ jobs:
           fi
 
           echo "TEST_ENV=$ENVIRONMENT" >> $GITHUB_ENV
-          echo "BASE_URL=http://localhost:3000/$ENVIRONMENT" >> $GITHUB_ENV
+          echo "BASE_URL=http://localhost:3000/$ENVIRONMENT/" >> $GITHUB_ENV
           echo "AUTH_TOKEN=${{ secrets.AUTH_TOKEN }}" >> $GITHUB_ENV
 
       - name: Display Environment
