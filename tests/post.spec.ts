@@ -103,7 +103,6 @@ test.describe('Validate POST Endpoint - Create user tests', () => {
 
     expect.soft(response2.status()).toBe(409);
     await userApi.deleteUser(user1.email);
-    await userApi.deleteUser(user2.email);
   });
 
   test('POST - Create user with duplicate age - Status Code 201', async () => {

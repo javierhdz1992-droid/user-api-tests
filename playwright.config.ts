@@ -5,7 +5,7 @@ import path from 'path';
 
 const validEnvs = ['dev', 'prod'];
 const rawEnv = process.env.TEST_ENV?.trim().toLowerCase() ?? '';
-const env = validEnvs.includes(rawEnv) ? rawEnv : 'dev';
+const env = validEnvs.includes(rawEnv) ? rawEnv : 'prod';
 process.env.TEST_ENV = env;
 
 const envFile = path.resolve(__dirname, `.env.${env}`);

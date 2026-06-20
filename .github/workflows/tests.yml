@@ -90,21 +90,8 @@ jobs:
               docker ps -a
               docker logs $(docker ps -q)
 
-      - name: Test POST manually
-        run: |
-          curl -X POST \
-          http://localhost:3000/dev/users \
-          -H "Content-Type: application/json" \
-          -d '{"name":"Test User","email":"test@mail.com","age":30}'
-
       - name: Execute Playwright Tests
         run: npx playwright test
-
-      - name: Display Docker Logs on Failure 
-        if: failure() 
-        run: | 
-          echo "===== CONTAINER LOGS =====" 
-          docker logs user-api
 
       - name: Show Docker Logs
         if: always()
@@ -129,13 +116,6 @@ jobs:
         with:
           name: allure-results
           path: allure-results
-
-      - name: Upload Allure Report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-report
-          path: allure-report
 
       - name: Deploy Allure Report to GitHub Pages
         if: always()
